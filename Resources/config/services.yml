@@ -1,0 +1,7 @@
+parameters:
+#    xrow_field_types.example.class: xrow\FieldTypesBundle\Example
+
+services:
+#    xrow.fieldTypes.example:
+#        class: %xrow_field_types.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

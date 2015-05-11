@@ -1,0 +1,18 @@
+{
+    "name": "xrow/field-types-bundle",
+    "description": "Fixes custom xrow datatypes of various extensions.",
+    "type": "symfony-bundle",
+    "homepage": "http://www.xrow.de",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Björn Dieding",
+            "email": "bjoern@xrow.de",
+            "homepage": "http://www.xrow.de",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "xrow\\FieldTypesBundle\\": ""}
+    }
+}

@@ -1,0 +1,47 @@
+parameters:
+# xrowmetadata
+    xrow_field_types.xrowmetadata.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\Type
+    xrow_field_types.xrowmetadata.converter.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\XrowMetadataConverter
+
+# xrowformgenerator
+    xrow_field_types.xrowformgenerator.class: xrow\FieldTypesBundle\FieldType\XrowFormGenerator\Type
+    xrow_field_types.xrowformgenerator.converter.class: xrow\FieldTypesBundle\FieldType\XrowFormGenerator\XrowFormGeneratorConverter
+
+# recaptcha
+    xrow_field_types.recaptcha.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\Type
+    xrow_field_types.recaptcha.converter.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\ReCaptchaConverter
+
+services:
+# xrowmetadata
+    xrow_field_types.xrowmetadata:
+        class: %xrow_field_types.xrowmetadata.class%
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: xrowmetadata}
+    xrow_field_types.xrowmetadata.converter:
+        class: %xrow_field_types.xrowmetadata.converter.class%
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: xrowmetadata}
+
+# xrowformgenerator
+    xrow_field_types.xrowformgenerator:
+        class: %xrow_field_types.xrowformgenerator.class%
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: xrowformgenerator}
+    xrow_field_types.xrowformgenerator.converter:
+        class: %xrow_field_types.xrowformgenerator.converter.class%
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: xrowformgenerator}
+
+# recaptcha
+    xrow_field_types.recaptcha:
+        class: %xrow_field_types.recaptcha.class%
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: recaptcha}
+    xrow_field_types.recaptcha.converter:
+        class: %xrow_field_types.recaptcha.converter.class%
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: recaptcha}
+            
