@@ -13,7 +13,7 @@ parameters:
 
 # xrowgis
     xrow_field_types.xrowgis.class: xrow\FieldTypesBundle\FieldType\XrowGis\Type
-    xrow_field_types.xrowgis.converter.class: xrow\FieldTypesBundle\FieldType\XrowGis\ReCaptchaConverter
+    xrow_field_types.xrowgis.converter.class: xrow\FieldTypesBundle\FieldType\XrowGis\XrowGisConverter
 
 services:
 # xrowmetadata
