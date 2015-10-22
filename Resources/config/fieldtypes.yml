@@ -11,6 +11,10 @@ parameters:
     xrow_field_types.recaptcha.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\Type
     xrow_field_types.recaptcha.converter.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\ReCaptchaConverter
 
+# xrowgis
+    xrow_field_types.xrowgis.class: xrow\FieldTypesBundle\FieldType\XrowGis\Type
+    xrow_field_types.xrowgis.converter.class: xrow\FieldTypesBundle\FieldType\XrowGis\ReCaptchaConverter
+
 services:
 # xrowmetadata
     xrow_field_types.xrowmetadata:
@@ -44,4 +48,14 @@ services:
         class: %xrow_field_types.recaptcha.converter.class%
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: recaptcha}
-            
+
+# xrowgis
+    xrow_field_types.xrowgis:
+        class: %xrow_field_types.xrowgis.class%
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: xrowgis}
+    xrow_field_types.xrowgis.converter:
+        class: %xrow_field_types.xrowgis.converter.class%
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: xrowgis}
