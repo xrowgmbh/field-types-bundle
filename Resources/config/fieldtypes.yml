@@ -15,6 +15,10 @@ parameters:
     xrow_field_types.xrowgis.class: xrow\FieldTypesBundle\FieldType\XrowGis\Type
     xrow_field_types.xrowgis.converter.class: xrow\FieldTypesBundle\FieldType\XrowGis\XrowGisConverter
 
+# hmregexpline
+    xrow_field_types.hmregexpline.class: xrow\FieldTypesBundle\FieldType\Regexpline\Type
+    xrow_field_types.hmregexpline.converter.class: xrow\FieldTypesBundle\FieldType\Regexpline\RegexplineConverter
+
 services:
 # xrowmetadata
     xrow_field_types.xrowmetadata:
@@ -59,3 +63,14 @@ services:
         class: %xrow_field_types.xrowgis.converter.class%
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: xrowgis}
+
+# hmregexpline
+    xrow_field_types.hmregexpline:
+        class: %xrow_field_types.hmregexpline.class%
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: hmregexpline}
+    xrow_field_types.hmregexpline.converter:
+        class: %xrow_field_types.hmregexpline.converter.class%
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: hmregexpline}
