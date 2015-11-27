@@ -14,6 +14,8 @@ parameters:
 # xrowgis
     xrow_field_types.xrowgis.class: xrow\FieldTypesBundle\FieldType\XrowGis\Type
     xrow_field_types.xrowgis.converter.class: xrow\FieldTypesBundle\FieldType\XrowGis\XrowGisConverter
+    xrow_field_types.xrowgis.externalStorage.class: xrow\FieldTypesBundle\FieldType\XrowGis\XrowGisStorage
+    xrow_field_types.xrowgis.storage_gateway.class: xrow\FieldTypesBundle\FieldType\XrowGis\XrowGisStorage\Gateway\LegacyStorage
 
 # hmregexpline
     xrow_field_types.hmregexpline.class: xrow\FieldTypesBundle\FieldType\Regexpline\Type
@@ -63,6 +65,14 @@ services:
         class: %xrow_field_types.xrowgis.converter.class%
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: xrowgis}
+    xrow_field_types.xrowgis.externalStorage:
+        class: %xrow_field_types.xrowgis.externalStorage.class%
+        tags:
+            - {name: ezpublish.fieldType.externalStorageHandler, alias: xrowgis}
+    xrow_field_types.xrowgis.storage_gateway:
+        class: %xrow_field_types.xrowgis.storage_gateway.class%
+        tags:
+            - {name: ezpublish.fieldType.externalStorageHandler.gateway, alias: xrowgis, identifier: LegacyStorage}
 
 # hmregexpline
     xrow_field_types.hmregexpline:
