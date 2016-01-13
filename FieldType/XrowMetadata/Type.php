@@ -3,120 +3,115 @@
  * xrowmetadata
  *
  */
-
 namespace xrow\FieldTypesBundle\FieldType\XrowMetadata;
 
 use eZ\Publish\Core\FieldType\FieldType;
 use eZ\Publish\Core\FieldType\Value as BaseValue;
 use eZ\Publish\SPI\FieldType\Value as SPIValue;
 use eZ\Publish\SPI\Persistence\Content\FieldValue as FieldValue;
+use eZ\Publish\Core\Base\Exceptions\InvalidArgumentType;
 
+/**
+ * xrowMetadata field types
+ *
+ * Represents Metadata.
+ */
 class Type extends FieldType
 {
+    /**
+     * Returns the field type identifier for this field type
+     *
+     * @return string
+     */
+    public function getFieldTypeIdentifier ()
+    {
+        return "xrowmetadata";
+    }
+    
+    /* (non-PHPdoc)
+     * @see \eZ\Publish\SPI\FieldType\FieldType::getName()
+    */
+    public function getName ( SPIValue $value )
+    {
+        return implode( ', ', $value->keywords );;
+    }
+    
+    /* (non-PHPdoc)
+     * @see \eZ\Publish\SPI\FieldType\FieldType::getEmptyValue()
+    */
+    public function getEmptyValue ()
+    {
+        return new Value(array());
+    }
     /* (non-PHPdoc)
      * @see \eZ\Publish\Core\FieldType\FieldType::createValueFromInput()
      */
     protected function createValueFromInput( $inputValue )
     {
-        return new Value( $inputValue );
-    }
+        if ( is_array( $inputValue ) )
+        {
+            $inputValue = new Value( $inputValue );
+        }
 
+        return $inputValue;
+    }
     /* (non-PHPdoc)
      * @see \eZ\Publish\Core\FieldType\FieldType::checkValueStructure()
      */
     protected function checkValueStructure ( BaseValue $value )
     {
-        // TODO Auto-generated method stub
-
-    }
-
-    /* (non-PHPdoc)
-     * @see \eZ\Publish\SPI\FieldType\FieldType::getFieldTypeIdentifier()
-     */
-    public function getFieldTypeIdentifier ()
-    {
-        // TODO Auto-generated method stub
-        return "xrowmetadata";
-    }
-
-    /* (non-PHPdoc)
-     * @see \eZ\Publish\SPI\FieldType\FieldType::getName()
-     */
-    public function getName ( SPIValue $value )
-    {
-        // TODO Auto-generated method stub
-
-    }
-
-    /* (non-PHPdoc)
-     * @see \eZ\Publish\SPI\FieldType\FieldType::getEmptyValue()
-     */
-    public function getEmptyValue ()
-    {
-        // TODO Auto-generated method stub
-        return new Value;
-    }
-
-    /* (non-PHPdoc)
-     * @see \eZ\Publish\SPI\FieldType\FieldType::fromHash()
-     */
-    public function fromHash ( $hash )
-    {
-        // TODO Auto-generated method stub
-       if ( $hash === null )
-       {
-           return $this->getEmptyValue();
-       }
-       return new Value( $hash );
-    }
-
-    public function isEmptyValue( SPIValue $value )
-    {
-        return false;
-    }
-
-    /* (non-PHPdoc)
-     * @see \eZ\Publish\SPI\FieldType\FieldType::toHash()
-     */
-    public function toHash ( SPIValue $value )
-    {
-        // TODO Auto-generated method stub
-        if ( $this->isEmptyValue( $value ) )
+        if ( !is_array( $value->keywords ) )
         {
-           return null;
+            throw new InvalidArgumentType(
+                '$value->keywords',
+                'array',
+                $value->keywords
+            );
         }
-        return $value->value;
     }
 
     protected function getSortInfo( BaseValue $value )
     {
         return false;
     }
-
-
+    
+    /* (non-PHPdoc)
+     * @see \eZ\Publish\SPI\FieldType\FieldType::fromHash()
+     */
+    public function fromHash ( $hash )
+    {
+       return new Value( $hash );
+    }
+    /* (non-PHPdoc)
+     * @see \eZ\Publish\SPI\FieldType\FieldType::toHash()
+     */
+    public function toHash ( SPIValue $value )
+    {
+        return array('keywords' => $value->keywords);
+    }
+    
+    /**
+     * Returns whether the field type is searchable
+     *
+     * @return boolean
+     */
+    public function isSearchable()
+    {
+        return true;
+    }
+    
     public function toPersistenceValue( SPIValue $value )
     {
-        if ( $value === null )
-        {
-            return new FieldValue(
-                array(
-                    "data" => null
-                )
-            );
-        }
         return new FieldValue(
             array(
-                "data" => $this->toHash( $value )
+                "data" => null,
+                "externalData" => $value->keywords,
+                "sortKey" => $this->getSortInfo( $value ),
             )
         );
     }
-
     public function fromPersistenceValue( FieldValue $fieldValue )
     {
-        if ( $fieldValue->data === null )
-        {
-            return $this->getEmptyValue();
-        }
-        return new Value( $fieldValue->data );
+        return $this->fromHash( $fieldValue->externalData );
     }
 }

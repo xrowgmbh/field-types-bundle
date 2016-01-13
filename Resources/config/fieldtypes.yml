@@ -2,6 +2,8 @@ parameters:
 # xrowmetadata
     xrow_field_types.xrowmetadata.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\Type
     xrow_field_types.xrowmetadata.converter.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\XrowMetadataConverter
+    xrow_field_types.xrowmetadata.externalStorage.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\XrowMetadataStorage
+    xrow_field_types.xrowmetadata.storage_gateway.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\XrowMetadataStorage\Gateway\LegacyStorage
 
 # xrowformgenerator
     xrow_field_types.xrowformgenerator.class: xrow\FieldTypesBundle\FieldType\XrowFormGenerator\Type
@@ -36,6 +38,14 @@ services:
         class: %xrow_field_types.xrowmetadata.converter.class%
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: xrowmetadata}
+    xrow_field_types.xrowmetadata.externalStorage:
+        class: %xrow_field_types.xrowmetadata.externalStorage.class%
+        tags:
+            - {name: ezpublish.fieldType.externalStorageHandler, alias: xrowmetadata}
+    xrow_field_types.xrowmetadata.storage_gateway:
+        class: %xrow_field_types.xrowmetadata.storage_gateway.class%
+        tags:
+            - {name: ezpublish.fieldType.externalStorageHandler.gateway, alias: xrowmetadata, identifier: LegacyStorage}
 
 # xrowformgenerator
     xrow_field_types.xrowformgenerator:

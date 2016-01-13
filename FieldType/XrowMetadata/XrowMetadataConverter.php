@@ -19,12 +19,12 @@ class XrowMetadataConverter implements Converter
 
     public function toStorageValue( FieldValue $value, StorageFieldValue $storageFieldValue )
     {
-        $storageFieldValue->dataText = $value->data;
+       // $storageFieldValue->dataText = $value->data;
     }
 
     public function toFieldValue( StorageFieldValue $value, FieldValue $fieldValue )
     {
-        $fieldValue->data = $value->dataText;
+       // $fieldValue->data = $value->dataText;
     }
 
     public function toStorageFieldDefinition( FieldDefinition $fieldDef, StorageFieldDefinition $storageDef )

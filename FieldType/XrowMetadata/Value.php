@@ -12,15 +12,26 @@ use eZ\Publish\Core\FieldType\Value as BaseValue;
  */
 class Value extends BaseValue
 {
-    public $value;
-
-    public function __construct( $value = null )
+    public $keywords=array();
+    
+    public $description;
+    
+    public $title;
+    
+    /**
+     * Construct a new Value object and initialize with $values
+     *
+     * @param string[]|string $values
+     */
+    public function __construct( $values = null )
     {
-        $this->value = $value;
+        if($values !== null && count($values)>0){
+            $this->keywords = array_unique( $values['keywords'] );
+        }
     }
 
     public function __toString()
     {
-        return (string)$this->value;
+        return implode( ', ', $this->keywords );
     }
 }
