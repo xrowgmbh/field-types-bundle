@@ -23,6 +23,10 @@ parameters:
     xrow_field_types.hmregexpline.class: xrow\FieldTypesBundle\FieldType\Regexpline\Type
     xrow_field_types.hmregexpline.converter.class: xrow\FieldTypesBundle\FieldType\Regexpline\RegexplineConverter
 
+# ezobjectrelationlistplus
+    xrow_field_types.ezobjectrelationlistplus.class: xrow\FieldTypesBundle\FieldType\EzObjectrelationListPlus\Type
+    xrow_field_types.ezobjectrelationlistplus.converter.class: xrow\FieldTypesBundle\FieldType\EzObjectrelationListPlus\EzObjectrelationListPlusConverter
+
 # xrownoderelation
     xrow_field_types.xrownoderelation.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\Type
     xrow_field_types.xrownoderelation.converter.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\XrowNodeRelationConverter
@@ -98,6 +102,18 @@ services:
         class: %xrow_field_types.hmregexpline.converter.class%
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: hmregexpline}
+
+# ezobjectrelationlistplus
+    xrow_field_types.ezobjectrelationlistplus:
+        class: %xrow_field_types.ezobjectrelationlistplus.class%
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: ezobjectrelationlistplus}
+    xrow_field_types.ezobjectrelationlistplus.converter:
+        class: %xrow_field_types.ezobjectrelationlistplus.converter.class%
+        arguments: [@ezpublish.api.storage_engine.legacy.dbhandler]
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: ezobjectrelationlistplus}
 
 # xrownoderelation
     xrow_field_types.xrownoderelation:
