@@ -51,12 +51,16 @@ class EzObjectrelationListPlusConverter implements Converter
         $relationList = $doc->createElement( 'relation-list' );
         $data = $this->getRelationXmlHashFromDB( $value->data['destinationContentIds'] );
         $priority = 0;
+        $playinfront = 0;
+        $origin=1;
 
         foreach ( $value->data['destinationContentIds'] as $id )
         {
             $row = $data[$id][0];
             $row["ezcontentobject_id"] = $id;
             $row["priority"] = ( $priority += 1 );
+            $row["playinfront"] = $playinfront;
+            $row["origin"] = $origin;
 
             $relationItem = $doc->createElement( 'relation-item' );
             foreach ( self::dbAttributeMap() as $domAttrKey => $propertyKey )
@@ -310,6 +314,8 @@ class EzObjectrelationListPlusConverter implements Converter
         return array(
             // 'identifier' => 'identifier',// not used
             'priority' => 'priority',
+            'playinfront' => 'playinfront',
+            'origin' => 'origin',
             // 'in-trash' => 'in_trash',// false by default and implies
             'contentobject-id' => 'ezcontentobject_id',
             'contentobject-version' => 'ezcontentobject_current_version',
