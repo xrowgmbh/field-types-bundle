@@ -1,10 +1,4 @@
 parameters:
-# xrowmetadata
-    xrow_field_types.xrowmetadata.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\Type
-    xrow_field_types.xrowmetadata.converter.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\XrowMetadataConverter
-    xrow_field_types.xrowmetadata.externalStorage.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\XrowMetadataStorage
-    xrow_field_types.xrowmetadata.storage_gateway.class: xrow\FieldTypesBundle\FieldType\XrowMetadata\XrowMetadataStorage\Gateway\LegacyStorage
-
 # xrowformgenerator
     xrow_field_types.xrowformgenerator.class: xrow\FieldTypesBundle\FieldType\XrowFormGenerator\Type
     xrow_field_types.xrowformgenerator.converter.class: xrow\FieldTypesBundle\FieldType\XrowFormGenerator\XrowFormGeneratorConverter
@@ -13,44 +7,15 @@ parameters:
     xrow_field_types.recaptcha.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\Type
     xrow_field_types.recaptcha.converter.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\ReCaptchaConverter
 
-# xrowgis
-    xrow_field_types.xrowgis.class: xrow\FieldTypesBundle\FieldType\XrowGis\Type
-    xrow_field_types.xrowgis.converter.class: xrow\FieldTypesBundle\FieldType\XrowGis\XrowGisConverter
-    xrow_field_types.xrowgis.externalStorage.class: xrow\FieldTypesBundle\FieldType\XrowGis\XrowGisStorage
-    xrow_field_types.xrowgis.storage_gateway.class: xrow\FieldTypesBundle\FieldType\XrowGis\XrowGisStorage\Gateway\LegacyStorage
-
 # hmregexpline
     xrow_field_types.hmregexpline.class: xrow\FieldTypesBundle\FieldType\Regexpline\Type
     xrow_field_types.hmregexpline.converter.class: xrow\FieldTypesBundle\FieldType\Regexpline\RegexplineConverter
-
-# ezobjectrelationlistplus
-    xrow_field_types.ezobjectrelationlistplus.class: xrow\FieldTypesBundle\FieldType\EzObjectrelationListPlus\Type
-    xrow_field_types.ezobjectrelationlistplus.converter.class: xrow\FieldTypesBundle\FieldType\EzObjectrelationListPlus\EzObjectrelationListPlusConverter
 
 # xrownoderelation
     xrow_field_types.xrownoderelation.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\Type
     xrow_field_types.xrownoderelation.converter.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\XrowNodeRelationConverter
 
 services:
-# xrowmetadata
-    xrow_field_types.xrowmetadata:
-        class: %xrow_field_types.xrowmetadata.class%
-        parent: ezpublish.fieldType
-        tags:
-            - {name: ezpublish.fieldType, alias: xrowmetadata}
-    xrow_field_types.xrowmetadata.converter:
-        class: %xrow_field_types.xrowmetadata.converter.class%
-        tags:
-            - {name: ezpublish.storageEngine.legacy.converter, alias: xrowmetadata}
-    xrow_field_types.xrowmetadata.externalStorage:
-        class: %xrow_field_types.xrowmetadata.externalStorage.class%
-        tags:
-            - {name: ezpublish.fieldType.externalStorageHandler, alias: xrowmetadata}
-    xrow_field_types.xrowmetadata.storage_gateway:
-        class: %xrow_field_types.xrowmetadata.storage_gateway.class%
-        tags:
-            - {name: ezpublish.fieldType.externalStorageHandler.gateway, alias: xrowmetadata, identifier: LegacyStorage}
-
 # xrowformgenerator
     xrow_field_types.xrowformgenerator:
         class: %xrow_field_types.xrowformgenerator.class%
@@ -73,25 +38,6 @@ services:
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: recaptcha}
 
-# xrowgis
-    xrow_field_types.xrowgis:
-        class: %xrow_field_types.xrowgis.class%
-        parent: ezpublish.fieldType
-        tags:
-            - {name: ezpublish.fieldType, alias: xrowgis}
-    xrow_field_types.xrowgis.converter:
-        class: %xrow_field_types.xrowgis.converter.class%
-        tags:
-            - {name: ezpublish.storageEngine.legacy.converter, alias: xrowgis}
-    xrow_field_types.xrowgis.externalStorage:
-        class: %xrow_field_types.xrowgis.externalStorage.class%
-        tags:
-            - {name: ezpublish.fieldType.externalStorageHandler, alias: xrowgis}
-    xrow_field_types.xrowgis.storage_gateway:
-        class: %xrow_field_types.xrowgis.storage_gateway.class%
-        tags:
-            - {name: ezpublish.fieldType.externalStorageHandler.gateway, alias: xrowgis, identifier: LegacyStorage}
-
 # hmregexpline
     xrow_field_types.hmregexpline:
         class: %xrow_field_types.hmregexpline.class%
@@ -102,18 +48,6 @@ services:
         class: %xrow_field_types.hmregexpline.converter.class%
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: hmregexpline}
-
-# ezobjectrelationlistplus
-    xrow_field_types.ezobjectrelationlistplus:
-        class: %xrow_field_types.ezobjectrelationlistplus.class%
-        parent: ezpublish.fieldType
-        tags:
-            - {name: ezpublish.fieldType, alias: ezobjectrelationlistplus}
-    xrow_field_types.ezobjectrelationlistplus.converter:
-        class: %xrow_field_types.ezobjectrelationlistplus.converter.class%
-        arguments: [@ezpublish.api.storage_engine.legacy.dbhandler]
-        tags:
-            - {name: ezpublish.storageEngine.legacy.converter, alias: ezobjectrelationlistplus}
 
 # xrownoderelation
     xrow_field_types.xrownoderelation:
