@@ -15,6 +15,9 @@ parameters:
     xrow_field_types.xrownoderelation.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\Type
     xrow_field_types.xrownoderelation.converter.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\XrowNodeRelationConverter
 
+# ezselection
+    xrow_field_types.ezselection.class: xrow\FieldTypesBundle\FieldType\Selection\Type
+
 services:
 # xrowformgenerator
     xrow_field_types.xrowformgenerator:
@@ -59,3 +62,10 @@ services:
         class: %xrow_field_types.xrownoderelation.converter.class%
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: xrownoderelation}
+
+# ezselection
+    xrow_field_types.ezselection:
+        class: %xrow_field_types.ezselection.class%
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: ezselection}
