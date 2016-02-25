@@ -116,10 +116,77 @@ class Type extends FieldType
      */
     public function getName(SPIValue $value)
     {
+        /*only for Leistung import*/
         if(is_array($value->selection)){
-            $name ="";
-            foreach($value->selection as $key => $value) {
-                 $name .= $key;
+            foreach($value->selection as $selectionId) {
+                switch ($selectionId) {
+                    case 0:
+                        $name = 'Barsinghausen';
+                        break;
+                    case 1:
+                        $name = 'Burgdorf';
+                        break;
+                    case 2:
+                        $name = 'Burgwedel';
+                        break;
+                    case 3:
+                        $name = 'Garbsen';
+                        break;
+                    case 4:
+                        $name = 'Gehrden';
+                        break;
+                    case 5:
+                        $name = 'Hannover';
+                        break;
+                    case 6:
+                        $name = 'Hemmingen';
+                        break;
+                    case 7:
+                        $name = 'Isernhagen';
+                        break;
+                    case 8:
+                        $name = 'Laatzen';
+                        break;
+                    case 9:
+                        $name = 'Langenhagen';
+                        break;
+                    case 10:
+                        $name = 'Lehrte';
+                        break;
+                    case 11:
+                        $name = 'Neustadt am Rübenberge';
+                        break;
+                    case 12:
+                        $name = 'Pattensen';
+                        break;
+                    case 13:
+                        $name = 'Ronnenberg';
+                        break;
+                    case 14:
+                        $name = 'Seelze';
+                        break;
+                    case 15:
+                        $name = 'Sehnde';
+                        break;
+                    case 16:
+                        $name = 'Springe';
+                        break;
+                    case 17:
+                        $name = 'Uetze';
+                        break;
+                    case 18:
+                        $name = 'Wedemark';
+                        break;
+                    case 19:
+                        $name = 'Wennigsen';
+                        break;
+                    case 20:
+                        $name = 'Wunstorf';
+                        break;
+                    default:
+                        $name='';
+                        break;
+                }
             }
             return $name;
         }else{
