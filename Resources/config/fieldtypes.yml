@@ -7,10 +7,6 @@ parameters:
     xrow_field_types.recaptcha.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\Type
     xrow_field_types.recaptcha.converter.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\ReCaptchaConverter
 
-# hmregexpline
-    xrow_field_types.hmregexpline.class: xrow\FieldTypesBundle\FieldType\Regexpline\Type
-    xrow_field_types.hmregexpline.converter.class: xrow\FieldTypesBundle\FieldType\Regexpline\RegexplineConverter
-
 # xrownoderelation
     xrow_field_types.xrownoderelation.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\Type
     xrow_field_types.xrownoderelation.converter.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\XrowNodeRelationConverter
@@ -37,17 +33,6 @@ services:
         class: %xrow_field_types.recaptcha.converter.class%
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: recaptcha}
-
-# hmregexpline
-    xrow_field_types.hmregexpline:
-        class: %xrow_field_types.hmregexpline.class%
-        parent: ezpublish.fieldType
-        tags:
-            - {name: ezpublish.fieldType, alias: hmregexpline}
-    xrow_field_types.hmregexpline.converter:
-        class: %xrow_field_types.hmregexpline.converter.class%
-        tags:
-            - {name: ezpublish.storageEngine.legacy.converter, alias: hmregexpline}
 
 # xrownoderelation
     xrow_field_types.xrownoderelation:
