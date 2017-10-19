@@ -16,34 +16,34 @@ parameters:
 services:
 # xrowformgenerator
     xrow_field_types.xrowformgenerator:
-        class: %xrow_field_types.xrowformgenerator.class%
+        class: "%xrow_field_types.xrowformgenerator.class%"
         parent: ezpublish.fieldType
         tags:
             - {name: ezpublish.fieldType, alias: xrowformgenerator}
     xrow_field_types.xrowformgenerator.converter:
-        class: %xrow_field_types.xrowformgenerator.converter.class%
+        class: "%xrow_field_types.xrowformgenerator.converter.class%"
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: xrowformgenerator}
 
 # recaptcha
     xrow_field_types.recaptcha:
-        class: %xrow_field_types.recaptcha.class%
+        class: "%xrow_field_types.recaptcha.class%"
         parent: ezpublish.fieldType
         tags:
             - {name: ezpublish.fieldType, alias: recaptcha}
     xrow_field_types.recaptcha.converter:
-        class: %xrow_field_types.recaptcha.converter.class%
+        class: "%xrow_field_types.recaptcha.converter.class%"
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: recaptcha}
 
 # xrownoderelation
     xrow_field_types.xrownoderelation:
-        class: %xrow_field_types.xrownoderelation.class%
+        class: "%xrow_field_types.xrownoderelation.class%"
         parent: ezpublish.fieldType
         tags:
             - {name: ezpublish.fieldType, alias: xrownoderelation}
     xrow_field_types.xrownoderelation.converter:
-        class: %xrow_field_types.xrownoderelation.converter.class%
+        class: "%xrow_field_types.xrownoderelation.converter.class%"
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: xrownoderelation}
     xrow_gis_types.xrownoderelation.storage_gateway:
