@@ -29,16 +29,14 @@ class XrowNodeRelationConverter implements Converter
 
     public function toStorageFieldDefinition( FieldDefinition $fieldDef, StorageFieldDefinition $storageDef )
     {
-
     }
 
     public function toFieldDefinition( StorageFieldDefinition $storageDef, FieldDefinition $fieldDef )
     {
-
     }
 
     public function getIndexColumn()
     {
-        return false;
+        return 'sort_key_int';
     }
 }
