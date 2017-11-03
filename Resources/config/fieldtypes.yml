@@ -7,12 +7,6 @@ parameters:
     xrow_field_types.recaptcha.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\Type
     xrow_field_types.recaptcha.converter.class: xrow\FieldTypesBundle\FieldType\ReCaptcha\ReCaptchaConverter
 
-# xrownoderelation
-    xrow_field_types.xrownoderelation.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\Type
-    xrow_field_types.xrownoderelation.converter.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\XrowNodeRelationConverter
-    xrow_gis_types.xrownoderelation.externalStorage.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\XrowNodeRelationStorage
-    xrow_gis_types.xrownoderelation.storage_gateway.class: xrow\FieldTypesBundle\FieldType\XrowNodeRelation\XrowNodeRelationStorage\Gateway\LegacyStorage
-
 services:
 # xrowformgenerator
     xrow_field_types.xrowformgenerator:
@@ -35,22 +29,3 @@ services:
         class: "%xrow_field_types.recaptcha.converter.class%"
         tags:
             - {name: ezpublish.storageEngine.legacy.converter, alias: recaptcha}
-
-# xrownoderelation
-    xrow_field_types.xrownoderelation:
-        class: "%xrow_field_types.xrownoderelation.class%"
-        parent: ezpublish.fieldType
-        tags:
-            - {name: ezpublish.fieldType, alias: xrownoderelation}
-    xrow_field_types.xrownoderelation.converter:
-        class: "%xrow_field_types.xrownoderelation.converter.class%"
-        tags:
-            - {name: ezpublish.storageEngine.legacy.converter, alias: xrownoderelation}
-    xrow_gis_types.xrownoderelation.storage_gateway:
-        class: "%xrow_gis_types.xrownoderelation.storage_gateway.class%"
-        tags:
-            - {name: ezpublish.fieldType.externalStorageHandler.gateway, alias: xrownoderelation, identifier: LegacyStorage}
-    xrow_gis_types.xrownoderelation.externalStorage:
-        class: "%xrow_gis_types.xrownoderelation.externalStorage.class%"
-        tags:
-            - {name: ezpublish.fieldType.externalStorageHandler, alias: xrownoderelation}
